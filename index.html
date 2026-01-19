@@ -6,8 +6,8 @@
     
     <title>IPU CGPA Calculator | SGPA, Marks vs Grade Point | GGSIPU</title>
     <meta name="description" content="The fastest IPU CGPA & SGPA Calculator for GGSIPU students. Convert marks to grade points, calculate semester GPA, and check marks vs CGPA logic instantly.">
-    <meta name="keywords" content="ipu cgpa calculator, ipu sgpa calculator, ipu marks vs cgpa, ggsipu grades, btech percentage calculator, ipu rank list, ipu result">
-    <meta name="author" content="Hitesh Namrani">
+    <meta name="keywords" content="ipu cgpa calculator, ipu sgpa calculator, ipu marks vs cgpa, ggsipu grades, btech percentage calculator, ipu rank list, ipu result, msit, mait, usict">
+    <meta name="author" content="Hitesh Namrani, Kunal Chauhan">
 
     <meta property="og:title" content="IPU CGPA Calculator | The 0.1% Standard">
     <meta property="og:description" content="Calculate your SGPA and CGPA instantly with the official GGSIPU grading logic. Fast, dark-mode enabled, and mobile-friendly.">
@@ -84,13 +84,26 @@
             color: #777;
             cursor: pointer;
             font-weight: 600;
-            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            
+            /* BUG FIX: Removes the blue highlight on Android/iOS */
+            -webkit-tap-highlight-color: transparent;
+            
+            /* Smooth transition for hover/click */
+            transition: background-color 0.4s ease, color 0.3s, transform 0.1s;
+        }
+
+        /* Active State: The Gold Flash */
+        .nav-btn:active {
+            background-color: rgba(212, 175, 55, 0.15); /* Gold tint instead of blue/white */
+            transform: scale(0.96); /* Slight shrink for tactile feel */
+            transition: 0s; /* Instant change */
         }
 
         .nav-btn.active {
             background: var(--gold-gradient);
             color: #000;
             box-shadow: 0 10px 30px rgba(191, 149, 63, 0.4);
+            transform: scale(1);
         }
 
         /* Glass Cards */
@@ -233,7 +246,10 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
+            -webkit-tap-highlight-color: transparent;
         }
+        
+        .action-btn:active { transform: scale(0.98); }
 
         .btn-gold { background: var(--gold-gradient); color: #000; }
         .btn-gold:hover { transform: scale(1.02); filter: brightness(1.1); }
@@ -265,6 +281,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            -webkit-tap-highlight-color: transparent;
         }
         .remove-icon:hover { background: rgba(255, 77, 77, 0.3); }
 
@@ -302,26 +319,52 @@
             text-align: center;
             width: 100%;
             max-width: 600px;
+            border-top: 1px solid var(--border);
+            margin-top: 50px;
         }
 
-        .footer-link {
-            font-size: 0.9rem;
-            color: #777;
-            text-decoration: none;
-            border-bottom: 1px dotted #777;
-            transition: 0.3s;
-            margin-bottom: 15px;
-            display: inline-block;
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
         }
-        .footer-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+        
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-link, .dev-link {
+            color: #888;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        
+        .footer-link:hover { color: var(--gold); }
+        
+        .dev-link {
+            color: var(--gold);
+            border-bottom: 1px dotted var(--gold);
+        }
+        .dev-link:hover { color: #fff; border-bottom-color: #fff; }
 
         .disclaimer {
             font-size: 0.75rem;
             color: #555;
             line-height: 1.5;
-            margin-top: 20px;
             opacity: 0.8;
+            max-width: 500px;
+            margin: 0 auto;
         }
+        
+        .separator { color: #333; }
         
     </style>
 </head>
@@ -403,13 +446,20 @@
     </div>
 
     <footer>
-        <div>
-            <a href="https://github.com/hitesh-namrani/ipu-cgpa-calculator" target="_blank" class="footer-link">Found a bug? Raise an issue on GitHub</a>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/hitesh-namrani/ipu-cgpa-calculator/" target="_blank" class="footer-link">🐛 Report Bug</a>
+                <span class="separator">|</span>
+                <span>Connect with Devs: 
+                    <a href="https://www.linkedin.com/in/hitesh-namrani-5b36641b8/" target="_blank" class="dev-link">Hitesh Namrani</a> & 
+                    <a href="https://www.linkedin.com/in/kunal-chauhan-18447134a/" target="_blank" class="dev-link">Kunal Chauhan</a>
+                </span>
+            </div>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> This is a mini-project based on the IPU Schemata of Evaluation. It is NOT an official university tool. 
+                The developer is not responsible for any discrepancies in the calculated GPA. Please verify with official results.
+            </p>
         </div>
-        <p class="disclaimer">
-            <strong>Disclaimer:</strong> This is a mini-project based on the IPU Schemata of Evaluation. It is NOT an official university tool. 
-            The developer is not responsible for any discrepancies in the calculated GPA. Please verify with official results.
-        </p>
     </footer>
 
     <script>
